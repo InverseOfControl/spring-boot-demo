@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class DemoController {
 
-    @Value("${a}")
+    @Value("${aaa}")
     private String str;
 
     @Autowired
@@ -17,8 +17,6 @@ public class DemoController {
 
     @GetMapping("/demo")
     public String demo(){
-        return "DemoController.demo1111";
+        return str;
     }
-
-
 }

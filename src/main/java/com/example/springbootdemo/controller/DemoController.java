@@ -12,6 +12,9 @@ public class DemoController {
     @Value("${aaa}")
     private String str;
 
+    @Value("${bbb}")
+    private String bbb;
+
     @Autowired
     private StringRedisTemplate redisTemplate1;
 

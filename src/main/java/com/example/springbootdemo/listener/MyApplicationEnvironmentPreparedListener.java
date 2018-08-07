@@ -6,11 +6,15 @@ import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEven
 import org.springframework.boot.env.PropertiesPropertySourceLoader;
 import org.springframework.context.ApplicationListener;
 import org.springframework.core.env.ConfigurableEnvironment;
+import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.ClassPathResource;
 
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * ${@link ApplicationListener}
@@ -31,6 +35,16 @@ public class MyApplicationEnvironmentPreparedListener implements ApplicationList
         ConfigurableEnvironment configurableEnvironment = applicationEnvironmentPreparedEvent.getEnvironment();
         MutablePropertySources mutablePropertySources = configurableEnvironment.getPropertySources();
         PropertySource propertySource = null;
+
+
+        for (Iterator<PropertySource<?>> it = mutablePropertySources.iterator(); it.hasNext(); ) {
+            PropertySource propertySource1 = it.next();
+            if("applicationConfig: [classpath:/application.properties]".equals(propertySource1.getName())){
+                System.out.println(propertySource1.getProperty("server.port"));
+            }
+        }
+
+
         try {
             propertySource = loader.load("myProperties", new ClassPathResource("test.properties")).get(0);
         } catch (IOException e) {

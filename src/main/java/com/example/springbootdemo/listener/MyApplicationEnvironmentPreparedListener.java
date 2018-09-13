@@ -44,7 +44,6 @@ public class MyApplicationEnvironmentPreparedListener implements ApplicationList
             }
         }
 
-
         try {
             propertySource = loader.load("myProperties", new ClassPathResource("test.properties")).get(0);
         } catch (IOException e) {

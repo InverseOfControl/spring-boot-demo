@@ -2,6 +2,7 @@ package com.example.springbootdemo.listener;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.boot.WebApplicationType;
 import org.springframework.boot.context.event.ApplicationEnvironmentPreparedEvent;
 import org.springframework.boot.env.PropertiesPropertySourceLoader;
 import org.springframework.context.ApplicationListener;
@@ -10,6 +11,7 @@ import org.springframework.core.env.MapPropertySource;
 import org.springframework.core.env.MutablePropertySources;
 import org.springframework.core.env.PropertySource;
 import org.springframework.core.io.ClassPathResource;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -31,6 +33,8 @@ public class MyApplicationEnvironmentPreparedListener implements ApplicationList
     @Override
     public void onApplicationEvent(ApplicationEnvironmentPreparedEvent applicationEnvironmentPreparedEvent) {
         System.out.println("MyApplicationEnvironmentPreparedEvent load begin");
+        WebApplicationType webApplicationType = applicationEnvironmentPreparedEvent.getSpringApplication().getWebApplicationType();
+
         //通过ConfigurableEnvironment可以自行配置环境属性，通过Configurable修改的类，代表可扩展
         ConfigurableEnvironment configurableEnvironment = applicationEnvironmentPreparedEvent.getEnvironment();
         MutablePropertySources mutablePropertySources = configurableEnvironment.getPropertySources();

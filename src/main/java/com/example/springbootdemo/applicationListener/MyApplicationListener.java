@@ -4,6 +4,8 @@ import org.springframework.context.ApplicationListener;
 import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 
+import javax.servlet.annotation.WebListener;
+
 @Component
 public class MyApplicationListener implements ApplicationListener<MyApplicationEvent> {
 
